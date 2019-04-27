@@ -5,6 +5,10 @@ public class ArrayStack<E> implements Stack<E> {
     ArrayStack(){
         arr =(E[]) (new Object[CAPACITY]) ;
     }
+    ArrayStack(int capacity){
+        arr =(E[]) (new Object[capacity]) ;
+
+    }
     @Override
     public void push(E value)           //O(1)
     {
