@@ -32,7 +32,9 @@ public class SinglyLinkedList<E> {
     private Node<E>back;
     public E getFront()     //O(1)
     {
-        return front.getValue();
+        if(!isEmpty())
+            return front.getValue();
+        throw new NullPointerException("list is Empty .... can't get element");
     }
 
     public void pushFront(E value)      //O(1)
@@ -47,8 +49,11 @@ public class SinglyLinkedList<E> {
 
     public void popFront()     //O(1)
     {
-        front=front.getNextNode();
-        --size;
+        if(!isEmpty()){
+            front=front.getNextNode();
+            --size;
+        }else
+            throw new NullPointerException("List is Empty.... ");
     }
 
 
@@ -66,16 +71,17 @@ public class SinglyLinkedList<E> {
 
    public void clear()      //O(1)
     {
+        size=0;
         front=null;
     }
 
-    public void pushBack(E value) //O(1)
+   /* public void pushBack(E value) //O(1)
     {
         Node<E> newNode=new Node<>(value);
 
 
         ++size;
-    }
+    }*/
 
     public E get(int index)    //O(n)
     {
@@ -120,7 +126,7 @@ public class SinglyLinkedList<E> {
             }
             current.setNextNode(current.getNextNode().getNextNode());
             --size;
-        }else if(index==0)
+        }else if(index==0 && !isEmpty())
             popFront();
         else
             throw new NullPointerException("Can't Access index "+index);
